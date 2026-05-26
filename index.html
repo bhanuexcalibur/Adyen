@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhanu Kumar &times; Adyen &middot; Proof of Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:    #060709;
+  --bg2:   #0b0d10;
+  --bg3:   #111318;
+  --bg4:   #17191f;
+  --bg5:   #1e2028;
+  --bdr:   rgba(255,255,255,0.07);
+  --bmd:   rgba(255,255,255,0.12);
+  --blg:   rgba(255,255,255,0.20);
+  --t1:    #eeecea;
+  --t2:    #96948f;
+  --t3:    #4e4c47;
+  --ad:    #0abf53;
+  --addim: rgba(10,191,83,0.10);
+  --adglo: rgba(10,191,83,0.18);
+  --adt:   #2fd46e;
+  --red:   #e04f4f;
+  --rddim: rgba(224,79,79,0.09);
+  --rdt:   #ef7070;
+  --amb:   #f0a500;
+  --adim:  rgba(240,165,0,0.09);
+  --at:    #f5bb35;
+  --blu:   #3b82f6;
+  --bludim:rgba(59,130,246,0.09);
+  --blut:  #6fa8fb;
+  --radius:14px;
+  --radius-lg:18px;
+}
+
+html{scroll-behavior:smooth;scroll-padding-top:62px;}
+body{
+  background:var(--bg);color:var(--t1);
+  font-family:'Geist',sans-serif;font-size:16px;
+  line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+
+/* READING BAR */
+.rbar{position:fixed;top:0;left:0;height:2px;background:var(--ad);z-index:500;transition:width 0.08s linear;width:0%;}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(6,7,9,0.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--bdr);padding:0 5vw;
+}
+.nav-i{
+  max-width:1120px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;gap:16px;
+}
+.nav-logo{
+  font-family:'Geist Mono',monospace;font-size:12.5px;
+  color:var(--t1);letter-spacing:0.02em;white-space:nowrap;flex-shrink:0;
+}
+.nav-logo .sep{color:var(--t3);margin:0 8px;}
+.nav-links{display:flex;gap:3px;}
+.np{
+  font-size:12px;font-weight:500;padding:6px 13px;
+  border-radius:100px;border:1px solid var(--bdr);
+  color:var(--t2);background:transparent;
+  text-decoration:none;transition:all 0.14s;white-space:nowrap;
+}
+.np:hover{border-color:var(--bmd);color:var(--t1);}
+.np.cta{background:var(--ad);border-color:var(--ad);color:#000;font-weight:600;}
+.np.cta:hover{opacity:0.88;}
+
+.hbg{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;background:none;border:none;padding:4px;flex-shrink:0;
+}
+.hbg span{
+  display:block;width:22px;height:1.5px;
+  background:var(--t1);border-radius:2px;
+  transition:transform 0.3s,opacity 0.3s;
+}
+.hbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hbg.open span:nth-child(2){opacity:0;}
+.hbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+.mob-menu{
+  display:none;position:fixed;inset:0;top:56px;
+  background:var(--bg);z-index:190;
+  flex-direction:column;padding:28px 5vw;gap:0;
+  border-top:1px solid var(--bdr);
+}
+.mob-menu.open{display:flex;}
+.mob-menu a{
+  padding:16px 0;border-bottom:1px solid var(--bdr);
+  font-size:16px;color:var(--t2);text-decoration:none;
+  transition:color 0.14s;
+}
+.mob-menu a:hover{color:var(--t1);}
+.mob-menu .cta-m{
+  margin-top:20px;border:none;
+  color:var(--ad);font-weight:600;
+}
+
+/* COVER */
+.cover{
+  max-width:1120px;margin:0 auto;
+  padding:90px 5vw 70px;
+  border-bottom:1px solid var(--bdr);
+}
+.ck{
+  font-family:'Geist Mono',monospace;
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:28px;
+}
+.c-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(42px,7vw,82px);
+  font-weight:300;line-height:1.05;
+  letter-spacing:-0.03em;color:var(--t1);
+  margin-bottom:28px;
+}
+.c-title .hi{color:var(--ad);}
+.c-title em{font-style:italic;font-weight:300;}
+.c-sub{
+  font-size:clamp(15px,1.7vw,18px);color:var(--t2);
+  font-weight:300;line-height:1.78;
+  max-width:680px;margin-bottom:40px;
+}
+.c-sub strong{color:var(--t1);font-weight:500;}
+.c-bar{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:48px;
+}
+.c-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--ad);animation:pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+.c-label{
+  font-family:'Geist Mono',monospace;font-size:11px;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);
+}
+.c-foot{
+  display:flex;justify-content:space-between;
+  align-items:flex-end;flex-wrap:wrap;gap:24px;
+}
+.c-info{font-size:13px;color:var(--t3);line-height:1.9;}
+.c-info strong{color:var(--t2);font-weight:500;}
+.c-toc{
+  display:flex;flex-direction:column;align-items:flex-end;gap:4px;
+}
+.toc-a{
+  font-family:'Geist Mono',monospace;font-size:11px;
+  color:var(--t3);text-decoration:none;letter-spacing:0.04em;
+  transition:color 0.14s;padding:3px 0;
+}
+.toc-a:hover{color:var(--adt);}
+
+/* WRAPPER */
+.wrap{max-width:1120px;margin:0 auto;padding:0 5vw;}
+
+/* SECTIONS */
+section{padding:72px 0;border-bottom:1px solid var(--bdr);}
+.s-tag{
+  font-family:'Geist Mono',monospace;font-size:10.5px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ad);margin-bottom:10px;
+}
+.s-head{
+  font-family:'Fraunces',serif;
+  font-size:clamp(26px,3.5vw,40px);
+  font-weight:300;letter-spacing:-0.025em;
+  color:var(--t1);margin-bottom:10px;line-height:1.1;
+}
+.s-sub{
+  font-size:15px;color:var(--t2);font-weight:300;
+  line-height:1.75;max-width:620px;margin-bottom:36px;
+}
+.s-sub strong{color:var(--t1);font-weight:500;}
+
+/* ==============================
+   SEC 01: MESSAGING AUDIT
+============================== */
+.audit-split{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin-bottom:16px;
+}
+@media(max-width:620px){.audit-split{grid-template-columns:1fr;}}
+.abox{
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:var(--radius-lg);overflow:hidden;
+}
+.abox-top{
+  padding:14px 20px;background:var(--bg3);
+  border-bottom:1px solid var(--bdr);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.abox-lbl{
+  font-family:'Geist Mono',monospace;font-size:10px;
+  letter-spacing:0.10em;text-transform:uppercase;
+}
+.abox.current .abox-lbl{color:var(--rdt);}
+.abox.reframe .abox-lbl{color:var(--adt);}
+.abox-body{padding:22px 22px;}
+.abox-body p{font-size:14px;color:var(--t2);line-height:1.74;font-weight:300;}
+.abox-body p strong{color:var(--t1);font-weight:500;}
+.abox-body p em{font-style:italic;}
+
+.audit-insight{
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-left:3px solid var(--ad);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:18px 22px;font-size:14px;
+  color:var(--t2);line-height:1.72;font-weight:300;
+  margin-bottom:12px;
+}
+.audit-insight strong{color:var(--t1);font-weight:500;}
+.audit-insight em{font-style:italic;color:var(--adt);}
+
+/* tabbed audit */
+.atabs{
+  display:flex;gap:4px;flex-wrap:wrap;
+  margin-bottom:12px;background:var(--bg2);
+  border:1px solid var(--bdr);border-radius:10px;padding:4px;
+  width:fit-content;
+}
+.atab{
+  font-family:'Geist Mono',monospace;font-size:10.5px;
+  padding:7px 15px;border:none;background:transparent;
+  color:var(--t2);cursor:pointer;border-radius:7px;
+  transition:all 0.15s;letter-spacing:0.04em;text-transform:uppercase;
+}
+.atab.on{background:var(--bg4);color:var(--adt);border:1px solid var(--addim);}
+.apanel{display:none;}
+.apanel.on{display:block;}
+
+/* ==============================
+   SEC 02: GTM BRIEF
+============================== */
+.gtm-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid var(--bdr);border-radius:var(--radius-lg);
+  background:var(--bg2);overflow:hidden;
+  margin-bottom:16px;
+}
+@media(max-width:660px){.gtm-grid{grid-template-columns:1fr;}}
+.gc{
+  padding:24px 26px;border-right:1px solid var(--bdr);
+  border-bottom:1px solid var(--bdr);
+}
+.gc:nth-child(even){border-right:none;}
+.gc.full{grid-column:1/-1;border-right:none;}
+.gc-label{
+  font-family:'Geist Mono',monospace;font-size:10px;
+  color:var(--ad);letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--bdr);
+}
+.gc p{font-size:14px;color:var(--t2);line-height:1.75;margin-bottom:8px;font-weight:300;}
+.gc p:last-child{margin-bottom:0;}
+.gc p strong{color:var(--t1);font-weight:500;}
+
+.phase-row{
+  display:grid;grid-template-columns:90px 1fr;
+  gap:16px;padding:14px 0;border-bottom:1px solid var(--bdr);
+  align-items:flex-start;
+}
+.phase-row:last-child{border-bottom:none;}
+.phase-tag{
+  font-family:'Geist Mono',monospace;font-size:10px;
+  color:var(--adt);text-transform:uppercase;
+  letter-spacing:0.08em;padding-top:3px;
+}
+.phase-txt{font-size:14px;color:var(--t2);line-height:1.68;font-weight:300;}
+.phase-txt strong{color:var(--t1);font-weight:500;}
+
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+@media(max-width:480px){.kpi-row{grid-template-columns:1fr 1fr;}}
+.kpi{background:var(--bg3);border:1px solid var(--bdr);border-radius:12px;padding:14px 16px;}
+.kpi-l{font-family:'Geist Mono',monospace;font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;}
+.kpi-v{font-family:'Fraunces',serif;font-size:26px;font-weight:300;color:var(--ad);line-height:1;margin-bottom:5px;}
+.kpi-d{font-size:12px;color:var(--t3);line-height:1.5;}
+
+/* ==============================
+   SEC 03: BUYER MAP
+============================== */
+.buyer-tabs{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;margin-bottom:14px;
+}
+@media(max-width:580px){.buyer-tabs{grid-template-columns:1fr;}}
+.btab{
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:var(--radius);padding:18px 18px;
+  cursor:pointer;transition:all 0.18s;user-select:none;
+}
+.btab:hover{border-color:var(--bmd);}
+.btab.on{border-color:var(--ad);background:var(--addim);}
+.bt-icon{font-size:20px;margin-bottom:10px;display:block;}
+.bt-name{
+  font-size:13.5px;font-weight:600;
+  color:var(--t1);margin-bottom:4px;letter-spacing:-0.01em;
+}
+.bt-role{font-size:12px;color:var(--t2);font-weight:300;line-height:1.5;}
+
+.buyer-panel{
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:var(--radius-lg);padding:26px 28px;
+  display:none;
+}
+.buyer-panel.on{display:block;}
+.bp-tag{
+  font-family:'Geist Mono',monospace;font-size:10px;
+  color:var(--adt);text-transform:uppercase;
+  letter-spacing:0.1em;margin-bottom:12px;
+}
+.bp-head{
+  font-family:'Fraunces',serif;
+  font-size:clamp(18px,2.4vw,25px);
+  font-weight:300;color:var(--t1);
+  line-height:1.2;letter-spacing:-0.02em;margin-bottom:14px;
+}
+.bp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:540px){.bp-grid{grid-template-columns:1fr;}}
+.bp-card{
+  background:var(--bg3);border:1px solid var(--bdr);
+  border-radius:12px;padding:16px;
+}
+.bp-card-lbl{
+  font-family:'Geist Mono',monospace;font-size:10px;
+  color:var(--t3);text-transform:uppercase;letter-spacing:0.08em;
+  margin-bottom:8px;
+}
+.bp-card p{font-size:13.5px;color:var(--t2);line-height:1.7;font-weight:300;}
+.bp-card p strong{color:var(--t1);font-weight:500;}
+.bp-msg-lbl{
+  font-family:'Geist Mono',monospace;font-size:10px;
+  color:var(--ad);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;
+}
+.bp-msg{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:clamp(16px,2vw,20px);font-weight:300;
+  color:var(--t1);line-height:1.4;border-left:2px solid var(--ad);
+  padding-left:16px;
+}
+
+/* ==============================
+   SEC 04: COPY SAMPLES
+============================== */
+.cex{
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:var(--radius-lg);overflow:hidden;margin-bottom:12px;
+}
+.cex-top{
+  padding:14px 22px;background:var(--bg3);
+  border-bottom:1px solid var(--bdr);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+.cex-ch{
+  font-family:'Geist Mono',monospace;
+  font-size:11px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:0.1em;
+}
+.cbadge{
+  font-family:'Geist Mono',monospace;font-size:10px;
+  padding:3px 10px;border-radius:100px;letter-spacing:0.06em;
+}
+.cbadge.sales{background:var(--addim);color:var(--adt);border:1px solid rgba(10,191,83,0.2);}
+.cbadge.launch{background:var(--bludim);color:var(--blut);border:1px solid rgba(59,130,246,0.2);}
+.cbadge.thought{background:var(--adim);color:var(--at);border:1px solid rgba(240,165,0,0.2);}
+.cbadge.enablement{background:var(--rddim);color:var(--rdt);border:1px solid rgba(224,79,79,0.2);}
+.cex-body{padding:24px 26px;}
+.ched{
+  font-family:'Fraunces',serif;
+  font-size:clamp(17px,2.2vw,23px);
+  font-weight:300;color:var(--t1);line-height:1.2;
+  letter-spacing:-0.02em;margin-bottom:12px;
+}
+.ctxt{font-size:14.5px;color:var(--t2);line-height:1.78;font-weight:300;margin-bottom:16px;}
+.ctxt strong{color:var(--t1);font-weight:500;}
+.cwhy{
+  font-size:13px;color:var(--t3);font-style:italic;
+  line-height:1.65;padding-top:14px;border-top:1px solid var(--bdr);
+}
+.cwhy strong{color:var(--t2);font-style:normal;}
+
+/* ==============================
+   SEC 05: GTM PLAYBOOK SNAPSHOT
+============================== */
+.playbook-shell{
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:var(--radius-lg);overflow:hidden;
+}
+.pb-head{
+  padding:22px 26px;background:var(--bg3);
+  border-bottom:1px solid var(--bdr);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+.pb-head h3{font-family:'Fraunces',serif;font-size:18px;font-weight:300;letter-spacing:-0.01em;color:var(--t1);}
+.pb-head p{font-size:12.5px;color:var(--t3);font-family:'Geist Mono',monospace;}
+.pb-body{padding:0;}
+.pb-row{
+  display:grid;grid-template-columns:160px 1fr;
+  border-bottom:1px solid var(--bdr);
+}
+.pb-row:last-child{border-bottom:none;}
+@media(max-width:540px){.pb-row{grid-template-columns:1fr;}}
+.pb-phase{
+  padding:18px 20px;background:var(--bg3);
+  border-right:1px solid var(--bdr);
+}
+@media(max-width:540px){.pb-phase{border-right:none;border-bottom:1px solid var(--bdr);padding:12px 16px;}}
+.pb-phase-num{
+  font-family:'Geist Mono',monospace;font-size:11px;
+  color:var(--ad);letter-spacing:0.08em;margin-bottom:4px;
+}
+.pb-phase-name{font-size:13px;font-weight:500;color:var(--t1);}
+.pb-phase-dur{font-size:11px;color:var(--t3);margin-top:2px;}
+.pb-details{padding:16px 20px;}
+.pb-tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.ptag{
+  font-size:11px;padding:3px 9px;border-radius:100px;
+  background:var(--bg4);border:1px solid var(--bdr);
+  color:var(--t2);font-family:'Geist Mono',monospace;letter-spacing:0.04em;
+}
+.pb-detail-txt{font-size:13.5px;color:var(--t2);line-height:1.68;font-weight:300;}
+.pb-detail-txt strong{color:var(--t1);font-weight:500;}
+
+/* ==============================
+   SEC 06: OTHER WORK
+============================== */
+.wgrid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+@media(max-width:700px){.wgrid{grid-template-columns:1fr 1fr;}}
+@media(max-width:460px){.wgrid{grid-template-columns:1fr;}}
+.wcard{
+  background:var(--bg2);border:1px solid var(--bdr);
+  border-radius:var(--radius);padding:20px;
+  text-decoration:none;display:flex;flex-direction:column;
+  transition:border-color 0.18s,transform 0.18s;
+}
+.wcard:hover{border-color:rgba(10,191,83,0.35);transform:translateY(-3px);}
+.wcard-tag{
+  font-family:'Geist Mono',monospace;font-size:10px;
+  color:var(--t3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;
+}
+.wcard h4{font-size:14px;font-weight:600;letter-spacing:-0.01em;color:var(--t1);margin-bottom:6px;line-height:1.25;}
+.wcard p{font-size:13px;color:var(--t2);line-height:1.6;font-weight:300;flex:1;}
+.warr{display:block;font-size:14px;color:var(--t3);margin-top:12px;transition:color 0.18s,transform 0.18s;}
+.wcard:hover .warr{color:var(--adt);transform:translateX(4px);}
+
+/* SIGNATURE */
+.sig{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:24px;padding:64px 0 88px;
+}
+.sig-name{
+  font-family:'Fraunces',serif;
+  font-size:clamp(24px,3vw,36px);
+  font-weight:300;letter-spacing:-0.03em;color:var(--t1);margin-bottom:10px;
+}
+.sig-name span{color:var(--ad);}
+.sig-det{font-size:13.5px;color:var(--t2);line-height:1.9;}
+.sig-det a{color:var(--t2);text-decoration:none;transition:color 0.14s;}
+.sig-det a:hover{color:var(--adt);}
+.sig-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.sbtn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13.5px;font-weight:500;padding:12px 22px;
+  border-radius:8px;text-decoration:none;transition:all 0.16s;
+}
+.sbtn.pri{background:var(--ad);color:#000;border:1px solid var(--ad);font-weight:600;}
+.sbtn.pri:hover{opacity:0.88;transform:translateY(-1px);}
+.sbtn.ghost{background:transparent;color:var(--t2);border:1px solid var(--bmd);}
+.sbtn.ghost:hover{border-color:var(--ad);color:var(--adt);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  section{padding:56px 0;}
+  .cover{padding:64px 5vw 48px;}
+  .c-foot{flex-direction:column;align-items:flex-start;}
+  .c-toc{align-items:flex-start;}
+  .nav-links{display:none;}
+  .hbg{display:flex;}
+  .sig{flex-direction:column;align-items:flex-start;padding:48px 0 64px;}
+  .pb-row{grid-template-columns:1fr;}
+}
+@media(max-width:420px){
+  .phase-row{grid-template-columns:72px 1fr;}
+  .kpi-row{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="rbar" id="rbar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-i">
+    <div class="nav-logo">Bhanu Kumar<span class="sep">&#215;</span>Adyen</div>
+    <div class="nav-links">
+      <a href="#audit"    class="np">Audit</a>
+      <a href="#gtm"      class="np">GTM Brief</a>
+      <a href="#buyers"   class="np">Buyer Map</a>
+      <a href="#copy"     class="np">Copy</a>
+      <a href="#playbook" class="np">Playbook</a>
+      <a href="#work"     class="np">Other Work</a>
+      <a href="mailto:bhanukumar0902@gmail.com" class="np cta">Say hello</a>
+    </div>
+    <button class="hbg" id="hbg" onclick="toggleMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mob">
+  <a href="#audit"    onclick="closeMob()">Audit</a>
+  <a href="#gtm"      onclick="closeMob()">GTM Brief</a>
+  <a href="#buyers"   onclick="closeMob()">Buyer Map</a>
+  <a href="#copy"     onclick="closeMob()">Copy</a>
+  <a href="#playbook" onclick="closeMob()">Playbook</a>
+  <a href="#work"     onclick="closeMob()">Other Work</a>
+  <a href="mailto:bhanukumar0902@gmail.com" class="cta-m" onclick="closeMob()">Say hello &rarr;</a>
+</div>
+
+<!-- COVER -->
+<div class="cover reveal">
+  <div class="ck">Proof of Work &middot; Product Marketing Manager &middot; Adyen</div>
+  <h1 class="c-title">
+    Every payment<br>
+    is a <span class="hi">data point.</span><br>
+    Most platforms<br>
+    <em>waste them.</em>
+  </h1>
+  <p class="c-sub">
+    Adyen built a single-stack platform that spans acquiring, processing, data, and embedded finance across 40+ countries. The product story is compelling. The market is moving fast. <strong>The PMM job is making sure the right buyer understands why consolidating on Adyen beats the stack of five vendors they're currently running.</strong>
+  </p>
+  <div class="c-bar">
+    <span class="c-dot"></span>
+    <span class="c-label">The audit. The brief. The thinking.</span>
+  </div>
+  <div class="c-foot">
+    <div class="c-info">
+      <strong>Bhanu Kumar</strong><br>
+      bhanukumar0902@gmail.com &nbsp;&middot;&nbsp; linkedin.com/in/bhanuexcalibur<br>
+      B2B SaaS PMM &middot; Fintech &middot; Enterprise GTM &middot; May 2026
+    </div>
+    <div class="c-toc">
+      <a class="toc-a" href="#audit">01 / Messaging Audit</a>
+      <a class="toc-a" href="#gtm">02 / GTM Brief</a>
+      <a class="toc-a" href="#buyers">03 / Buyer Map</a>
+      <a class="toc-a" href="#copy">04 / Copy Samples</a>
+      <a class="toc-a" href="#playbook">05 / Launch Playbook</a>
+      <a class="toc-a" href="#work">06 / Other Work</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===========================
+  SEC 01: MESSAGING AUDIT
+=========================== -->
+<section id="audit">
+<div class="wrap">
+  <div class="reveal">
+    <div class="s-tag">01 / Messaging Audit</div>
+    <h2 class="s-head">The platform story is real.<br>The messaging doesn't always show it.</h2>
+    <p class="s-sub">Adyen's core value is platform consolidation: one contract, one data layer, one reconciliation workflow. But current external messaging often leads with feature-level benefits instead of the structural advantage that actually closes enterprise deals.</p>
+  </div>
+
+  <!-- Tab switcher -->
+  <div class="reveal" style="margin-bottom:20px;">
+    <div class="atabs">
+      <button class="atab on" onclick="auditTab(this,'a1')">Homepage</button>
+      <button class="atab"    onclick="auditTab(this,'a2')">Unified Commerce</button>
+      <button class="atab"    onclick="auditTab(this,'a3')">For Platforms</button>
+    </div>
+  </div>
+
+  <!-- Panel A1: Homepage -->
+  <div class="apanel on" id="a1">
+    <div class="audit-split reveal">
+      <div class="abox current">
+        <div class="abox-top">
+          <span class="abox-lbl">Current messaging</span>
+        </div>
+        <div class="abox-body">
+          <p>The homepage leads with logos of known enterprise clients and a tagline centered on being a "financial technology platform." The value props follow a predictable three-column grid: online payments, in-store, platforms. Each column is self-contained, which fragments what is actually a unified story.</p>
+          <p style="margin-top:12px;"><strong>What a CFO sees:</strong> Another payments vendor with a lot of names they already recognize. Nothing yet that explains why switching makes commercial sense.</p>
+        </div>
+      </div>
+      <div class="abox reframe">
+        <div class="abox-top">
+          <span class="abox-lbl">Stronger angle</span>
+        </div>
+        <div class="abox-body">
+          <p>Lead with the cost of fragmentation, not the breadth of the platform. Enterprise buyers running multiple PSPs know the reconciliation pain, the data gaps, the fraud logic that doesn't carry across channels. That frustration is the hook.</p>
+          <p style="margin-top:12px;"><strong>What changes:</strong> The primary headline argues for consolidation as a business decision, not a technology purchase. The logos become proof, not decoration.</p>
+        </div>
+      </div>
+    </div>
+    <div class="audit-insight reveal">
+      <strong>Core gap:</strong> "Financial technology platform" as a label is accurate but not differentiating. Stripe, Checkout.com, and Worldpay all use similar language. The actual differentiator, <em>a single stack with direct scheme connections that spans acquiring, data, and embedded finance under one contract,</em> rarely makes it to the first screen.
+    </div>
+  </div>
+
+  <!-- Panel A2: Unified Commerce -->
+  <div class="apanel" id="a2">
+    <div class="audit-split reveal">
+      <div class="abox current">
+        <div class="abox-top">
+          <span class="abox-lbl">Current messaging</span>
+        </div>
+        <div class="abox-body">
+          <p>Unified Commerce pages describe the feature set well: online + in-store + app, same shopper profile, consistent checkout. The product is genuinely differentiated. The messaging uses the category correctly.</p>
+          <p style="margin-top:12px;"><strong>The problem:</strong> It's written for someone who already decided they want unified commerce. It doesn't create urgency for the enterprise buyer who is still running separate online and retail contracts and thinks they're managing fine.</p>
+        </div>
+      </div>
+      <div class="abox reframe">
+        <div class="abox-top">
+          <span class="abox-lbl">Stronger angle</span>
+        </div>
+        <div class="abox-body">
+          <p>The Unified Commerce story needs a "before" state. Quantify what fragmented data actually costs: the loyalty program that doesn't know about in-store purchases, the fraud model that's flying blind on half the volume, the auth rate that drops because the risk engine has a partial picture.</p>
+          <p style="margin-top:12px;"><strong>What changes:</strong> Unified Commerce volumes grew 35% YoY in H2 2024. That metric should anchor the commercial case alongside the feature explanation.</p>
+        </div>
+      </div>
+    </div>
+    <div class="audit-insight reveal">
+      <strong>Opportunity:</strong> The Dr. Martens and H&M case studies exist but aren't aggressive enough about the commercial outcome. A before/after format showing authorization rate lift, reconciliation time saved, and chargeback reduction would make the ROI case much harder to dismiss in a buying committee.
+    </div>
+  </div>
+
+  <!-- Panel A3: For Platforms -->
+  <div class="apanel" id="a3">
+    <div class="audit-split reveal">
+      <div class="abox current">
+        <div class="abox-top">
+          <span class="abox-lbl">Current messaging</span>
+        </div>
+        <div class="abox-body">
+          <p>Adyen for Platforms is clearly the fastest-growing segment, with platform volume up 51% in 2024 and embedded financial products issuing volumes growing nearly 3x. The product page is solid on feature coverage: split payments, sub-merchant onboarding, issuing.</p>
+          <p style="margin-top:12px;"><strong>The gap:</strong> The business model angle for the platform operator is underplayed. Platforms don't just want payments. They want a new revenue stream and tighter user retention. That's a different conversation.</p>
+        </div>
+      </div>
+      <div class="abox reframe">
+        <div class="abox-top">
+          <span class="abox-lbl">Stronger angle</span>
+        </div>
+        <div class="abox-body">
+          <p>Position AfP as a monetization decision, not a payments integration. The operator's question is: "what does embedding financial products do for my user retention and ARPU?" that's where the positioning needs to go, especially for SaaS platforms like Toast, Lightspeed, and Zenoti where financial services are becoming a primary margin driver.</p>
+          <p style="margin-top:12px;"><strong>What changes:</strong> Case study framing shifts from "how we integrated" to "what it added to the business model." Revenue figures for the operator, not just Adyen.</p>
+        </div>
+      </div>
+    </div>
+    <div class="audit-insight reveal">
+      <strong>Positioning note:</strong> The competitor framing matters here. Stripe Connect is the main comparable. Adyen's edge is the direct scheme access and the ability to support the full embedded finance stack without a second vendor for issuing. That's worth making explicit rather than leaving implicit in the feature list.
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ===========================
+  SEC 02: GTM BRIEF
+=========================== -->
+<section id="gtm">
+<div class="wrap">
+  <div class="reveal">
+    <div class="s-tag">02 / GTM Brief</div>
+    <h2 class="s-head">Unified Commerce: enterprise<br>expansion motion</h2>
+    <p class="s-sub">Adyen's 2025 strategy leans into platform monetization and North American expansion. This brief outlines how a PMM would think about the Unified Commerce GTM motion for mid-market to enterprise retail, where the consolidation argument is sharpest.</p>
+  </div>
+
+  <div class="gtm-grid reveal">
+    <div class="gc">
+      <div class="gc-label">Market context</div>
+      <p>Omnichannel volumes are recovering post-pandemic, but the actual bottleneck for large retailers is data fragmentation, not payment acceptance. Most enterprise brands run separate PSPs for online and in-store, which means their fraud model, loyalty program, and analytics team each have an incomplete picture. Adyen's Unified Commerce directly addresses this.</p>
+    </div>
+    <div class="gc">
+      <div class="gc-label">Competitive landscape</div>
+      <p><strong>Stripe</strong> is strong in online and developer adoption but limited in native POS scale. <strong>Worldpay/FIS</strong> dominates legacy enterprise but carries integration debt. <strong>Adyen's gap:</strong> the only credible platform with direct scheme connections, an in-house risk engine, and native in-store hardware that runs on the same data layer as the online stack.</p>
+    </div>
+    <div class="gc">
+      <div class="gc-label">ICP for this motion</div>
+      <p>Multi-channel retailers with 500M+ in annual revenue, currently running separate online and in-store contracts. Operating in 5+ markets where payment method fragmentation adds compliance and reconciliation overhead. Hospitality, fashion, and QSR verticals show the strongest fit given Adyen's existing customer base.</p>
+    </div>
+    <div class="gc">
+      <div class="gc-label">Buyer committee</div>
+      <p><strong>Economic buyer:</strong> CFO or VP Finance (TCO argument, vendor consolidation). <strong>Technical champion:</strong> VP Engineering or Head of Payments (integration complexity, uptime SLA). <strong>Commercial sponsor:</strong> VP Commerce or CRO (authorization lift, conversion rate). Each needs a different message, same platform story.</p>
+    </div>
+    <div class="gc full">
+      <div class="gc-label">90-day launch motion</div>
+      <div class="phase-row">
+        <span class="phase-tag">Days 1-30</span>
+        <span class="phase-txt"><strong>Insight sprint:</strong> Run 8-10 discovery calls with mid-market retail prospects and 3 existing Unified Commerce customers. Map real friction points before building messaging. Identify the language buyers actually use when describing their payment stack problems, not the language the product team uses.</span>
+      </div>
+      <div class="phase-row">
+        <span class="phase-tag">Days 31-60</span>
+        <span class="phase-txt"><strong>Messaging validation:</strong> Develop two positioning hypotheses (consolidation-led vs. data advantage-led). Test with commercial team in 3 regional markets. Collect win/loss data on 15 recent enterprise deals to identify where messaging lost the room.</span>
+      </div>
+      <div class="phase-row">
+        <span class="phase-tag">Days 61-90</span>
+        <span class="phase-txt"><strong>Enablement build:</strong> Ship a localized GTM playbook per vertical (retail, hospitality, QSR). One deal calculator showing consolidation cost savings. Two new case studies in the before/after commercial outcome format. Sales battlecard against Stripe and Worldpay at the enterprise tier.</span>
+      </div>
+    </div>
+    <div class="gc full">
+      <div class="gc-label">Success metrics</div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-l">Primary</div>
+          <div class="kpi-v">Pipeline</div>
+          <div class="kpi-d">Qualified pipeline from Unified Commerce motion per quarter</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-l">Secondary</div>
+          <div class="kpi-v">Win rate</div>
+          <div class="kpi-d">Deal win rate where new messaging was used vs. baseline</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-l">Enablement</div>
+          <div class="kpi-v">Coverage</div>
+          <div class="kpi-d">% of commercial reps using playbook within 45 days of ship</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ===========================
+  SEC 03: BUYER MAP
+=========================== -->
+<section id="buyers">
+<div class="wrap">
+  <div class="reveal">
+    <div class="s-tag">03 / Buyer Map</div>
+    <h2 class="s-head">Three buyers. One platform.<br>Three different conversations.</h2>
+    <p class="s-sub">Enterprise payments deals rarely have a single decision-maker. The same Adyen pitch needs to land differently depending on who's in the room. Here's how the message shifts without the product story changing.</p>
+  </div>
+
+  <div class="buyer-tabs reveal">
+    <div class="btab on" onclick="buyerTab(this,'b1')">
+      <span class="bt-icon">&#128200;</span>
+      <div class="bt-name">CFO / VP Finance</div>
+      <div class="bt-role">Economic buyer, controls vendor consolidation</div>
+    </div>
+    <div class="btab" onclick="buyerTab(this,'b2')">
+      <span class="bt-icon">&#9881;</span>
+      <div class="bt-name">VP Engineering</div>
+      <div class="bt-role">Technical champion, cares about integration risk</div>
+    </div>
+    <div class="btab" onclick="buyerTab(this,'b3')">
+      <span class="bt-icon">&#128241;</span>
+      <div class="bt-name">CRO / VP Commerce</div>
+      <div class="bt-role">Commercial sponsor, owns conversion and revenue</div>
+    </div>
+  </div>
+
+  <!-- Buyer panel B1: CFO -->
+  <div class="buyer-panel on reveal" id="b1">
+    <div class="bp-tag">Economic buyer</div>
+    <div class="bp-head">The CFO doesn't buy payment features. They buy fewer vendors on the P&L and better working capital visibility.</div>
+    <div class="bp-grid">
+      <div class="bp-card">
+        <div class="bp-card-lbl">What they care about</div>
+        <p>Vendor count, reconciliation cost, FX exposure, settlement timing, and total cost of payments as a percentage of revenue. They want to know: what do I stop paying for, and where does the number go down?</p>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-lbl">Where Adyen wins</div>
+        <p>Single contract covering all channels eliminates multi-vendor reconciliation overhead. Direct scheme connections on Mastercard and Visa mean lower interchange routing costs. Unified settlement across 150+ currencies reduces FX complexity significantly.</p>
+      </div>
+    </div>
+    <div class="bp-msg-lbl">Suggested opening line</div>
+    <div class="bp-msg">"Most enterprise payment stacks grew organically, one vendor per channel, one contract per market. We see what that costs in reconciliation hours and missed authorization revenue. There's a cleaner way to run this."</div>
+  </div>
+
+  <!-- Buyer panel B2: VP Eng -->
+  <div class="buyer-panel reveal" id="b2">
+    <div class="bp-tag">Technical champion</div>
+    <div class="bp-head">The engineering lead wants to know what breaks during migration and who owns the problem if it does.</div>
+    <div class="bp-grid">
+      <div class="bp-card">
+        <div class="bp-card-lbl">What they care about</div>
+        <p>API stability, SLA guarantees, documentation quality, SDK coverage, and the rollback plan. They've been burned before. The question is always: how many engineers does this take to maintain, and who do I call at 2am?</p>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-lbl">Where Adyen wins</div>
+        <p>Single API for all channels, all payment methods, all markets. In-house risk engine with configurable rules that don't require professional services to modify. Dedicated technical account manager at enterprise tier. The integration surface area is actually smaller than managing five vendor relationships.</p>
+      </div>
+    </div>
+    <div class="bp-msg-lbl">Suggested opening line</div>
+    <div class="bp-msg">"Running five payment vendors means five integration surfaces, five risk models with no shared context, and five upgrade cycles you didn't ask for. One API that handles all of it isn't a feature, it's a maintenance cost argument."</div>
+  </div>
+
+  <!-- Buyer panel B3: CRO -->
+  <div class="buyer-panel reveal" id="b3">
+    <div class="bp-tag">Commercial sponsor</div>
+    <div class="bp-head">The revenue owner cares about authorization rates, checkout conversion, and not leaving revenue on the table at the payment step.</div>
+    <div class="bp-grid">
+      <div class="bp-card">
+        <div class="bp-card-lbl">What they care about</div>
+        <p>Authorization rate improvement, decline recovery, local payment method coverage in growth markets, and the shopper experience at checkout. Every declined transaction is a lost sale. Every failed retry is friction they hear about from the growth team.</p>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-lbl">Where Adyen wins</div>
+        <p>Adyen Uplift (launched January 2025) showed up to 6% improvement in payment conversion in 2024 pilots. Intelligent Payment Routing for US Debit, introduced in 2024, cut costs 26% for pilot customers. The RevenueAccelerate product suite turns authorization data into a retention tool, not just a compliance metric.</p>
+      </div>
+    </div>
+    <div class="bp-msg-lbl">Suggested opening line</div>
+    <div class="bp-msg">"Authorization rate is a revenue metric, not a payments metric. A 1% improvement at 500M in volume is 5M that was already in your funnel. That's the conversation Adyen starts differently."</div>
+  </div>
+</div>
+</section>
+
+
+<!-- ===========================
+  SEC 04: COPY SAMPLES
+=========================== -->
+<section id="copy">
+<div class="wrap">
+  <div class="reveal">
+    <div class="s-tag">04 / Copy Samples</div>
+    <h2 class="s-head">What the messaging could<br>actually sound like.</h2>
+    <p class="s-sub">These are sample executions across different channels and buying stages. Each one is grounded in something specific about how Adyen's platform is built, not generic fintech copy.</p>
+  </div>
+
+  <!-- Copy 1 -->
+  <div class="cex reveal">
+    <div class="cex-top">
+      <span class="cex-ch">Hero copy &middot; Homepage reframe</span>
+      <span class="cbadge thought">Positioning</span>
+    </div>
+    <div class="cex-body">
+      <div class="ched">Five payment vendors. One reconciliation nightmare. There's a cleaner architecture.</div>
+      <div class="ctxt">
+        Adyen's single-stack platform covers acquiring, processing, risk, data, and embedded finance across 40+ countries, under one contract. Businesses like Meta, Uber, and H&M stopped stitching vendors together. Their auth rates went up. Their reconciliation overhead went down. <strong>Same platform, every channel, one data layer.</strong>
+      </div>
+      <div class="cwhy"><strong>Why this works:</strong> Names the real pain (fragmentation) before naming the product. The logos now do work, they prove the consolidation thesis rather than just adding credibility. Avoids the trap of leading with features the competitor also has.</div>
+    </div>
+  </div>
+
+  <!-- Copy 2 -->
+  <div class="cex reveal">
+    <div class="cex-top">
+      <span class="cex-ch">Sales email &middot; CFO outreach</span>
+      <span class="cbadge sales">Sales enablement</span>
+    </div>
+    <div class="cex-body">
+      <div class="ched">Your payment stack is costing more than the processing fees.</div>
+      <div class="ctxt">
+        Hi [Name],<br><br>
+        Most enterprise payment stacks weren't designed, they grew. One vendor per channel, one contract per market, one reconciliation format per team. The processors don't see that cost, but finance does.<br><br>
+        Adyen works differently: one platform across online, in-store, and marketplace flows, with unified settlement, one data layer, and direct scheme connections on Mastercard and Visa. Businesses at [Company]'s scale typically see meaningful reconciliation time savings and measurable authorization rate lift within the first two quarters.<br><br>
+        Worth a 20-minute call to run the numbers on what consolidation looks like for your stack?
+      </div>
+      <div class="cwhy"><strong>Why this works:</strong> Opens with the structural problem, not with Adyen. Respects the CFO's time by being specific about what the conversation is about. The ask is appropriately sized for a cold outreach.</div>
+    </div>
+  </div>
+
+  <!-- Copy 3 -->
+  <div class="cex reveal">
+    <div class="cex-top">
+      <span class="cex-ch">Product launch copy &middot; Adyen Uplift (January 2025)</span>
+      <span class="cbadge launch">Launch</span>
+    </div>
+    <div class="cex-body">
+      <div class="ched">The payment optimization tool that turns decline data into revenue recovery.</div>
+      <div class="ctxt">
+        Adyen Uplift applies machine learning across your full transaction history to increase payment conversion. In a 2024 pilot, merchants saw up to 6% improvement in authorization rates, <strong>without changing their checkout flow or their shopper experience.</strong><br><br>
+        It works because Adyen processes both sides of the transaction. The risk model that flags the decline is the same model that learns from it. No third-party optimization layer. No data handoffs. Just a better decision, faster.
+      </div>
+      <div class="cwhy"><strong>Why this works:</strong> Leads with the outcome, not the feature name. Explains the architectural advantage (same-stack processing) in plain language. The "without changing" line directly addresses the VP Engineering's integration concern in the middle of a commercial message.</div>
+    </div>
+  </div>
+
+  <!-- Copy 4 -->
+  <div class="cex reveal">
+    <div class="cex-top">
+      <span class="cex-ch">Thought leadership &middot; LinkedIn long-form</span>
+      <span class="cbadge thought">Demand gen</span>
+    </div>
+    <div class="cex-body">
+      <div class="ched">Why payment data is the loyalty program asset most brands don't know they have.</div>
+      <div class="ctxt">
+        A shopper buys online on Monday. Returns an item in-store on Thursday. Uses a different card for both transactions.<br><br>
+        Most payment stacks see two separate events. No shared identity, no connected profile, no behavioral signal passed to the loyalty engine or the fraud model.<br><br>
+        The brands doing this well, the ones where checkout feels like it knows the customer, are running a unified data layer underneath. Not three vendors with partial views.<br><br>
+        <strong>Payment consolidation stopped being an IT decision somewhere around 2022. It's a data strategy decision now.</strong>
+      </div>
+      <div class="cwhy"><strong>Why this works:</strong> Opens with a scenario, not a claim. The emotional hook is recognition: every CRO has seen the loyalty program gap. The conclusion lands without needing to say "Adyen" until much later in the content funnel.</div>
+    </div>
+  </div>
+
+  <!-- Copy 5 -->
+  <div class="cex reveal">
+    <div class="cex-top">
+      <span class="cex-ch">Sales battlecard snippet &middot; vs. Stripe Connect</span>
+      <span class="cbadge enablement">Enablement</span>
+    </div>
+    <div class="cex-body">
+      <div class="ched">When they say: "We're already using Stripe."</div>
+      <div class="ctxt">
+        Stripe is a strong default for developer-first online payments. If the buyer's world is web-only, fast iteration, and domestic volume, that conversation can end there.<br><br>
+        The question to ask: <strong>"What does your in-store payment stack look like, and who owns the reconciliation between the two?"</strong><br><br>
+        If the answer is a second vendor, or "finance handles it manually," that's the gap. Adyen processes both channels on the same platform, same risk engine, same settlement. No bridge integrations. No reconciliation gap. For enterprise retail doing over 500M annually, the consolidation math usually favors Adyen by a measurable margin on total cost of payments.
+      </div>
+      <div class="cwhy"><strong>Why this works:</strong> Doesn't dismiss Stripe. Acknowledges where they're genuinely strong. Then pivots to the specific scenario where Adyen wins clearly: multi-channel enterprise with reconciliation complexity. Gives the sales rep a specific question to use rather than a feature list to read from.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ===========================
+  SEC 05: GTM PLAYBOOK SNAPSHOT
+=========================== -->
+<section id="playbook">
+<div class="wrap">
+  <div class="reveal">
+    <div class="s-tag">05 / Launch Playbook</div>
+    <h2 class="s-head">How a product launch actually runs<br>at an enterprise scale.</h2>
+    <p class="s-sub">Using Adyen Uplift as the reference case: an AI-powered payment optimization product launched in January 2025. Here's the playbook structure for a PMM overseeing a global launch across 20+ markets.</p>
+  </div>
+
+  <div class="playbook-shell reveal">
+    <div class="pb-head">
+      <div>
+        <h3>Adyen Uplift: global launch playbook</h3>
+        <p>January 2025 launch &middot; Multi-market &middot; Enterprise tier focus</p>
+      </div>
+    </div>
+    <div class="pb-body">
+      <div class="pb-row">
+        <div class="pb-phase">
+          <div class="pb-phase-num">Phase 01</div>
+          <div class="pb-phase-name">Positioning foundation</div>
+          <div class="pb-phase-dur">Weeks 1-4</div>
+        </div>
+        <div class="pb-details">
+          <div class="pb-tag-row">
+            <span class="ptag">Messaging</span>
+            <span class="ptag">Research</span>
+            <span class="ptag">Stakeholder alignment</span>
+          </div>
+          <div class="pb-detail-txt">
+            Align on what Uplift is and isn't selling: <strong>it's not a feature, it's an authorization rate improvement,</strong> measured in basis points and translated to revenue. Run positioning sessions with product, commercial, and risk teams. Identify the one-line proof point from the 2024 pilot (up to 6% conversion improvement) and build backwards from it. Determine which buyer tier gets which message: existing merchant upsell vs. new enterprise prospect.
+          </div>
+        </div>
+      </div>
+      <div class="pb-row">
+        <div class="pb-phase">
+          <div class="pb-phase-num">Phase 02</div>
+          <div class="pb-phase-name">Market segmentation</div>
+          <div class="pb-phase-dur">Weeks 3-6</div>
+        </div>
+        <div class="pb-details">
+          <div class="pb-tag-row">
+            <span class="ptag">Localization brief</span>
+            <span class="ptag">Vertical mapping</span>
+            <span class="ptag">Regional commercial teams</span>
+          </div>
+          <div class="pb-detail-txt">
+            Authorization rate sensitivity varies by market: higher in the US where debit routing is complex, different in markets with local payment method dominance. Brief regional PMMs on where the Uplift story lands hardest by vertical. For retail: conversion rate framing. For subscriptions: involuntary churn reduction framing. For travel: approval rate at high-value ticket transactions. Each market gets a localized proof point, not a translated version of the global copy.
+          </div>
+        </div>
+      </div>
+      <div class="pb-row">
+        <div class="pb-phase">
+          <div class="pb-phase-num">Phase 03</div>
+          <div class="pb-phase-name">Enablement build</div>
+          <div class="pb-phase-dur">Weeks 5-8</div>
+        </div>
+        <div class="pb-details">
+          <div class="pb-tag-row">
+            <span class="ptag">Sales deck</span>
+            <span class="ptag">Deal calculator</span>
+            <span class="ptag">Objection handling</span>
+            <span class="ptag">One-pager</span>
+          </div>
+          <div class="pb-detail-txt">
+            Ship a deal calculator that takes a merchant's current processed volume and current authorization rate and outputs the revenue opportunity at various improvement scenarios. This becomes the first slide in every commercial conversation. Separate the "what is Uplift" deck (for new prospects) from the "here's your Uplift opportunity" deck (for account expansion conversations). Build the objection doc around the three most common blockers from the pilot feedback: data privacy concerns, integration timeline, and "we're satisfied with our current rate."
+          </div>
+        </div>
+      </div>
+      <div class="pb-row">
+        <div class="pb-phase">
+          <div class="pb-phase-num">Phase 04</div>
+          <div class="pb-phase-name">Launch execution</div>
+          <div class="pb-phase-dur">Weeks 8-12</div>
+        </div>
+        <div class="pb-details">
+          <div class="pb-tag-row">
+            <span class="ptag">Press and analyst</span>
+            <span class="ptag">Merchant comms</span>
+            <span class="ptag">Content wave</span>
+            <span class="ptag">Event activation</span>
+          </div>
+          <div class="pb-detail-txt">
+            Coordinate the external launch with a case study from a named pilot merchant (with permission) and a press release anchoring on the 6% pilot outcome. Activate at Money20/20 or Shoptalk if timing allows, where the enterprise buyer is already in the room. Run the internal launch as a commercial team kickoff: 45-minute live session showing the deal calculator in action, covering the objection playbook, and walking through the first 30-day pipeline target. Measure adoption within 30 days of ship.
+          </div>
+        </div>
+      </div>
+      <div class="pb-row">
+        <div class="pb-phase">
+          <div class="pb-phase-num">Phase 05</div>
+          <div class="pb-phase-name">Measurement</div>
+          <div class="pb-phase-dur">Weeks 10 onwards</div>
+        </div>
+        <div class="pb-details">
+          <div class="pb-tag-row">
+            <span class="ptag">Pipeline tracking</span>
+            <span class="ptag">Win/loss review</span>
+            <span class="ptag">Adoption rate</span>
+          </div>
+          <div class="pb-detail-txt">
+            Track: pipeline generated from Uplift-led conversations in the first 90 days. Win rate on deals where the deal calculator was used vs. not used. Enablement asset adoption rate across the commercial team. Review win/loss notes at 60 days to identify where the message is falling short and iterate the objection handling. Report back to product with the three most common questions buyers ask that the current materials don't answer.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ===========================
+  SEC 06: OTHER WORK
+=========================== -->
+<section id="work">
+<div class="wrap">
+  <div class="reveal">
+    <div class="s-tag">06 / Other Relevant Work</div>
+    <h2 class="s-head">Selected projects across<br>fintech and enterprise GTM.</h2>
+    <p class="s-sub">A sample of past PoW across payments, enterprise SaaS, and B2B GTM contexts.</p>
+  </div>
+
+  <div class="wgrid reveal">
+    <a class="wcard" href="https://bhanuexcalibur.github.io/Razorpay/" target="_blank" rel="noopener">
+      <div class="wcard-tag">Payments &middot; B2B GTM</div>
+      <h4>Razorpay</h4>
+      <p>Positioning and GTM strategy for a payments infrastructure company. Includes messaging audit, buyer segmentation, and launch brief for enterprise expansion.</p>
+      <span class="warr">&#8594;</span>
+    </a>
+    <a class="wcard" href="https://bhanuexcalibur.github.io/CashFree/" target="_blank" rel="noopener">
+      <div class="wcard-tag">Payments &middot; PMM</div>
+      <h4>Cashfree Payments</h4>
+      <p>Messaging strategy and go-to-market brief focused on enterprise merchant acquisition and the consolidation narrative in the Indian payments market.</p>
+      <span class="warr">&#8594;</span>
+    </a>
+    <a class="wcard" href="https://bhanuexcalibur.github.io/RevolutBusiness/" target="_blank" rel="noopener">
+      <div class="wcard-tag">Fintech &middot; Campaign</div>
+      <h4>Revolut Business</h4>
+      <p>GTM playbook for Revolut's business product suite. Focused on the SMB-to-enterprise expansion motion and the competitive case against incumbent banking products.</p>
+      <span class="warr">&#8594;</span>
+    </a>
+    <a class="wcard" href="https://bhanuexcalibur.github.io/Stripe/" target="_blank" rel="noopener">
+      <div class="wcard-tag">Fintech &middot; Enterprise</div>
+      <h4>Stripe</h4>
+      <p>Messaging audit and enterprise positioning work for Stripe's platform products. Includes buyer persona development and sales enablement copy.</p>
+      <span class="warr">&#8594;</span>
+    </a>
+    <a class="wcard" href="https://bhanuexcalibur.github.io/EtherFiAudit/" target="_blank" rel="noopener">
+      <div class="wcard-tag">Fintech &middot; Audit</div>
+      <h4>EtherFi</h4>
+      <p>Messaging and positioning audit for a crypto-native financial platform. Covers narrative clarity, buyer education, and differentiation from category incumbents.</p>
+      <span class="warr">&#8594;</span>
+    </a>
+    <a class="wcard" href="https://bhanuexcalibur.github.io/Veeva/" target="_blank" rel="noopener">
+      <div class="wcard-tag">Enterprise SaaS &middot; GTM</div>
+      <h4>Veeva Systems</h4>
+      <p>Full GTM brief for a complex enterprise SaaS product. Demonstrates buying committee mapping and multi-stakeholder messaging across a regulated industry.</p>
+      <span class="warr">&#8594;</span>
+    </a>
+  </div>
+</div>
+</section>
+
+
+<!-- SIGNATURE -->
+<div class="wrap">
+  <div class="sig reveal">
+    <div>
+      <div class="sig-name">Bhanu <span>Kumar.</span></div>
+      <div class="sig-det">
+        B2B PMM &middot; Enterprise GTM &middot; Fintech<br>
+        <a href="mailto:bhanukumar0902@gmail.com">bhanukumar0902@gmail.com</a><br>
+        <a href="https://linkedin.com/in/bhanuexcalibur" target="_blank" rel="noopener">LinkedIn</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://drive.google.com/file/d/1AiIzyOhyseZbLe-6GKyAimVI8l0bryF1/view" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+    <div class="sig-btns">
+      <a href="mailto:bhanukumar0902@gmail.com" class="sbtn pri">Say hello &rarr;</a>
+      <a href="https://drive.google.com/file/d/1AiIzyOhyseZbLe-6GKyAimVI8l0bryF1/view" target="_blank" rel="noopener" class="sbtn ghost">Resume</a>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* reading bar */
+window.addEventListener('scroll',()=>{
+  const st=window.scrollY,dh=document.body.scrollHeight-window.innerHeight;
+  document.getElementById('rbar').style.width=(dh>0?Math.min(100,st/dh*100):0)+'%';
+});
+
+/* mobile menu */
+function toggleMob(){
+  const h=document.getElementById('hbg'),m=document.getElementById('mob');
+  h.classList.toggle('open');m.classList.toggle('open');
+}
+function closeMob(){
+  document.getElementById('hbg').classList.remove('open');
+  document.getElementById('mob').classList.remove('open');
+}
+
+/* audit tabs */
+function auditTab(btn,id){
+  document.querySelectorAll('.atab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.apanel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(id).classList.add('on');
+}
+
+/* buyer map tabs */
+function buyerTab(btn,id){
+  document.querySelectorAll('.btab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.buyer-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(id).classList.add('on');
+}
+
+/* reveal on scroll */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');}});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
